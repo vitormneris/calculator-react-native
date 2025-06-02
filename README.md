@@ -17,4 +17,4 @@ npx expo start
 
 ## Link do projeto no Snack Expo
 
-### https://snack.expo.dev/@joaoneris/app-converter?platform=android
+### https://snack.expo.dev/@joaoneris/calculator?platform=android
