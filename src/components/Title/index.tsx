@@ -4,13 +4,15 @@ import { styles } from './style';
 
 type TitleProps = {
     text: string,
+    color: string,
+    fontSize: number
 }
 
-export default function Title({ text }: TitleProps) {
+export default function Title({ text, color, fontSize }: TitleProps) {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>{ text }</Text>
+            <Text style={[styles.title, { color: color }, { fontSize: (fontSize * 2) }]}>{ text }</Text>
         </View>
     );
 }

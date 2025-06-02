@@ -3,13 +3,16 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
     container: {
         borderRadius: 10,
-        marginTop: 30,
-        justifyContent: 'center',
-        alignItems: 'center'
+        borderWidth: 1,
+        width: '80%',
+        marginBottom: 20,
+        padding: 10,
+        alignItems: 'center',
     },
 
+
     title: {
-        fontSize: 40,
+        fontSize: 20,
         fontFamily: "google-sans",
     }
 });

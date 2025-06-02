@@ -23,30 +23,48 @@ const numbers: Key[] = [
 type KeyboardProps = {
     data: string,
     action: Dispatch<SetStateAction<string>>
+    background: string,
+    color: string,
+    fontSize: number
 }
 
-export default function Keyboard({ data, action }: KeyboardProps) {
+export default function Keyboard({ data, action, background, color, fontSize }: KeyboardProps) {
     return (
-        <View>
+        <View style={{ backgroundColor: background }}>
             <View style={styles.container}>
                 <View style={styles.subcontainerNumber}>
                     <FlatList
                         data={numbers}
                         numColumns={3}
+                        scrollEnabled={false} 
                         keyExtractor={(item) => item.value}
                         renderItem={({ item }: ListRenderItemInfo<Key>) =>
-                            <Key value={item.value} data={data} action={action} />
+                            <Key
+                                value={item.value}
+                                data={data}
+                                action={action}
+                                background={background}
+                                color={color}
+                                fontSize={fontSize}
+                            />
                         }
                     />
                 </View>
-                <View style={styles.subcontainerOperation}>
-                    <Key value="+" data={data} action={action} />
-                    <Key value="-" data={data} action={action} />
-                    <Key value="/" data={data} action={action} />
-                    <Key value="*" data={data} action={action} />
+                <View style={[styles.subcontainerOperation, { backgroundColor: background }]}>
+                    <Key value="+" data={data} action={action} background={background} color={color} fontSize={fontSize} />
+                    <Key value="-" data={data} action={action} background={background} color={color} fontSize={fontSize} />
+                    <Key value="/" data={data} action={action} background={background} color={color} fontSize={fontSize} />
+                    <Key value="*" data={data} action={action} background={background} color={color} fontSize={fontSize} />
                 </View>
             </View>
-            <KeyDelete value="DELETE" data={data} action={action} />
+            <KeyDelete 
+                value="DELETAR" 
+                data={data} 
+                action={action} 
+                background={background} 
+                color={color} 
+                fontSize={fontSize}
+            />
         </View>
     );
 }
@@ -54,26 +72,29 @@ export default function Keyboard({ data, action }: KeyboardProps) {
 type KeyProps = {
     value: string,
     data: string,
-    action: Dispatch<SetStateAction<string>>
+    action: Dispatch<SetStateAction<string>>,
+    background: string,
+    color: string,
+    fontSize: number
 }
 
-function Key({ value, data, action }: KeyProps) {
+function Key({ value, data, action, background, color, fontSize }: KeyProps) {
     const show = value;
     if (data.length >= 13) {
         value = "";
     }
 
     return (
-        <TouchableOpacity style={styles.key} onPress={() => action(data + value)}>
-            <Text style={styles.value}>{show}</Text>
+        <TouchableOpacity style={[styles.key, { borderWidth: 1, borderColor: color, backgroundColor: background  }]} onPress={() => action(data + value)}>
+            <Text style={[styles.value, { color: color, fontSize: (fontSize * 2) }]}>{show}</Text>
         </TouchableOpacity>
     )
 }
 
-function KeyDelete({ value, data, action }: KeyProps) {
+function KeyDelete({ value, data, action, background, color, fontSize }: KeyProps) {
     return (
-        <TouchableOpacity style={styles.key} onPress={() => action(data.slice(0, -1))}>
-            <Text style={styles.valueDelete}>{value}</Text>
+        <TouchableOpacity style={[styles.key, { borderWidth: 1, borderColor: color, backgroundColor: background }]} onPress={() => action(data.slice(0, -1))}>
+            <Text style={[styles.valueDelete, { color: color, fontSize: (fontSize * 1.5) }]}>{value}</Text>
         </TouchableOpacity>
     )
 }

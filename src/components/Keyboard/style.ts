@@ -3,13 +3,11 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
-        backgroundColor: '#fff',
     },
 
     subcontainerNumber: {
         flexDirection: 'row',
         flexWrap: 'wrap',
-        backgroundColor: '#fff',
     },
 
     subcontainerOperation: {
@@ -20,10 +18,12 @@ export const styles = StyleSheet.create({
     key: {
         justifyContent: 'center',
         alignItems: 'center',
-        borderWidth: 1,
+        borderWidth: 2,
         paddingVertical: 10,
         paddingHorizontal: 20,
         backgroundColor: '#fff',
+        borderRadius: 20,
+        margin: 1
     },
 
     value: {
